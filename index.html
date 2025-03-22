@@ -200,7 +200,7 @@
         surahs.forEach(surah => {  
             const li = document.createElement("li");  
             li.textContent = surah.name;  
-            li.onclick = () => window.open(`https://quran.com/${surah.number}`, "_blank");  
+            li.onclick = () => window.open(`https://surahquran.com/${surah.number}.html#reading`, "_blank");  
             list.appendChild(li);  
         });  
     }  
@@ -215,7 +215,7 @@
     filtered.forEach(surah => {
         const li = document.createElement("li");
         li.textContent = surah.name;
-        li.onclick = () => window.open(`https://quran.com/${surah.number}`, "_blank");
+        li.onclick = () => window.open(`https://surahquran/${surah.number}.html#reading`, "_blank");
         list.appendChild(li);
     });
 }
