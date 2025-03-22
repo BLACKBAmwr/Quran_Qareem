@@ -1,66 +1,202 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة تخمين الرقم</title>
-</head>
-<body>
-    <h1>لعبة تخمين الرقم</h1>
-    <p>اختر رقمًا بين 1 و 10:</p>
-
-    <!-- حقل إدخال للتخمين -->
-    <input type="number" id="guessInput" min="1" max="10">
-
-    <!-- زر المحاولة -->
-    <button onclick="checkGuess()">حاول</button>
-
-    <!-- زر إعادة اللعبة -->
-    <button onclick="resetGame()">إعادة اللعبة</button>
-
-    <!-- مكان لعرض الرسالة -->
-    <p id="message"></p>
-    <p id="attemptsLeft">المحاولات المتبقية: 3</p>
-
-    <!-- إضافة جافا سكريبت -->
-    <script>
-        let random = Math.floor(Math.random() * 10 + 1);
-let message = document.getElementById("message");
-let attemptsElement = document.getElementById("attemptsLeft");
-let attempts = 3;
-
-function checkGuess() {
-    let guess = parseInt(document.getElementById("guessInput").value);
-    if (attempts > 0) {
-        if (guess == random) {
-            message.innerText = "Your Guess IS True";
-            message.style.color = "green";
-        } else if (guess > random) {
-            message.innerText = "too high";
-            message.style.color = "orange";
-            attempts--;
-            attemptsElement.innerText = `المحاولات المتبقية: ${attempts}`;
-        } else if (guess < random) {
-            message.innerText = "too low";
-            message.style.color = "orange";
-            attempts--;
-            attemptsElement.innerText = `المحاولات المتبقية: ${attempts}`;
-        }
+<!DOCTYPE html>  <html lang="ar">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>روابط سور القرآن الكريم</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            direction: rtl;  
+            text-align: center;  
+            background-color: #f8f9fa;  
+            margin: 0;  
+            padding: 0;  
+        }  
+        .container {  
+            width: 90%;  
+            margin: 20px auto;  
+            background: gold;  
+            padding: 20px;  
+            border-radius: 10px;  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+        }  
+        input {  
+            width: 90%;  
+            padding: 10px;  
+            margin: 10px 0;  
+            border: 1px solid red;  
+            border-radius: 5px;  
+            font-size: 16px;  
+        }  
+        ul {  
+            list-style: none;  
+            padding: 0;  
+        }  
+        li {  
+            padding: 10px;  
+            margin: 5px 0;  
+            background: red;  
+            color: white;  
+            border-radius: 5px;  
+            cursor: pointer;  
+            transition: 0.3s;  
+        }  
+        li:hover {  
+            background: darkred;  
+        }  
+        footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+    width: 100%; /* تأكد من أن العرض يغطي الشاشة بالكامل */
+    padding: 10px 0; /* إضافة تباعد من الأعلى والأسفل */
+    position: fixed; /* تثبيت الفوتر أسفل الصفحة */
+    bottom: 0; /* جعله دائمًا في أسفل الصفحة */
+    left: 0; /* تأكيد أنه يبدأ من أقصى اليسار */
+    text-align: center; /* توسيط النص */
+    border-radius: 10px;
+}
+    p{
+        font-size: 15px; 
     }
+    </style>  
+</head>  
+<body>  
+ <footer>  
+            <p>Copy Right © 2025 Abdalla Emad Ahmed</p>  
+        </footer>  
+    <div class="container">  
+        <h1>روابط سور القرآن الكريم</h1> 
+        <p>("صدقة جارية على روح جدتي، رحمها الله وجعل مثواها الجنة.")
 
-else if (attempts == 0) {
-    message.innerText = "You have no more attempts!"
-}
-}
-    // 2nd section :)
-    function resetGame() {
-    attempts = 3;
-    random = Math.floor(Math.random() * 10 + 1);
-    message.innerText = "";
-    attemptsElement.innerText = `المحاولات المتبقية: ${attempts}`;
-    document.getElementById("guessInput").value = "";
+</p>
+        <input type="text" id="search" placeholder="ابحث عن سورة..." onkeyup="searchSurah()">  <ul id="surah-list"></ul>  
+
+
+</div>  
+
+<script>  
+    const surahs = [  
+        { number: 1, name: "الفاتحة" },  
+        { number: 2, name: "البقرة" },  
+        { number: 3, name: "آل عمران" },  
+        { number: 4, name: "النساء" },  
+        { number: 5, name: "المائدة" },  
+        { number: 6, name: "الأنعام" },  
+        { number: 7, name: "الأعراف" },  
+        { number: 8, name: "الأنفال" },  
+        { number: 9, name: "التوبة" },  
+        { number: 10, name: "يونس" },  
+        { number: 11, name: "هود" },  
+        { number: 12, name: "يوسف" },  
+        { number: 13, name: "الرعد" },  
+        { number: 14, name: "إبراهيم" },  
+        { number: 15, name: "الحجر" },  
+        { number: 16, name: "النحل" },  
+        { number: 17, name: "الإسراء" },  
+        { number: 18, name: "الكهف" },  
+        { number: 19, name: "مريم" },  
+        { number: 20, name: "طه" },  
+        { number: 21, name: "الأنبياء" },  
+        { number: 22, name: "الحج" },  
+        { number: 23, name: "المؤمنون" },  
+        { number: 24, name: "النور" },  
+        { number: 25, name: "الفرقان" },  
+        { number: 26, name: "الشعراء" },  
+        { number: 27, name: "النمل" },  
+        { number: 28, name: "القصص" },  
+        { number: 29, name: "العنكبوت" },  
+        { number: 30, name: "الروم" },  
+        { number: 31, name: "لقمان" },  
+        { number: 32, name: "السجدة" },  
+        { number: 33, name: "الأحزاب" },  
+        { number: 34, name: "سبأ" },  
+        { number: 35, name: "فاطر" },  
+        { number: 36, name: "يس" },  
+        { number: 37, name: "الصافات" },  
+        { number: 38, name: "ص" },  
+        { number: 39, name: "الزمر" },  
+        { number: 40, name: "غافر" },  
+        { number: 41, name: "فصلت" },  
+        { number: 42, name: "الشورى" },  
+        { number: 43, name: "الزخرف" },  
+        { number: 44, name: "الدخان" },  
+        { number: 45, name: "الجاثية" },  
+        { number: 46, name: "الأحقاف" },  
+        { number: 47, name: "محمد" },  
+        { number: 48, name: "الفتح" },  
+        { number: 49, name: "الحجرات" },  
+        { number: 50, name: "ق" },  
+        { number: 51, name: "الذاريات" },  
+        { number: 52, name: "الطور" },  
+        { number: 53, name: "النجم" },  
+        { number: 54, name: "القمر" },  
+        { number: 55, name: "الرحمن" },  
+        { number: 56, name: "الواقعة" },  
+        { number: 57, name: "الحديد" },  
+        { number: 58, name: "المجادلة" },  
+        { number: 59, name: "الحشر" },  
+        { number: 60, name: "الممتحنة" },  
+        { number: 61, name: "الصف" },  
+        { number: 62, name: "الجمعة" },  
+        { number: 63, name: "المنافقون" },  
+        { number: 64, name: "التغابن" },  
+        { number: 65, name: "الطلاق" },  
+        { number: 66, name: "التحريم" },  
+        { number: 67, name: "الملك" },  
+        { number: 68, name: "القلم" },  
+        { number: 69, name: "الحاقة" },  
+        { number: 70, name: "المعارج" },  
+        { number: 71, name: "نوح" },  
+        { number: 72, name: "الجن" },  
+        { number: 73, name: "المزمل" },  
+        { number: 74, name: "المدثر" },  
+        { number: 75, name: "القيامة" },  
+        { number: 76, name: "الإنسان" },  
+        { number: 77, name: "المرسلات" },  
+        { number: 78, name: "النبأ" },  
+        { number: 79, name: "النازعات" },  
+        { number: 80, name: "عبس" },  
+        { number: 81, name: "التكوير" },  
+        { number: 82, name: "الإنفطار" },  
+        { number: 83, name: "المطففين"},  
+        { number: 84, name:  "الانشقاق"  },  
+        { number: 85, name:  "البروج"  },  
+        { number: 86, name: "الطارق"},  
+        { number: 87, name: "الأعلي" },  
+        { number: 88, name: "الغاشية" },  
+        { number: 114, name: "الناس" }  
+    ];  
+
+    function loadSurahs() {  
+        const list = document.getElementById("surah-list");  
+        list.innerHTML = "";  
+        surahs.forEach(surah => {  
+            const li = document.createElement("li");  
+            li.textContent = surah.name;  
+            li.onclick = () => window.open(`https://quran.com/${surah.number}`, "_blank");  
+            list.appendChild(li);  
+        });  
+    }  
+
+    function searchSurah() {
+    const query = document.getElementById("search").value.trim();
+    const filtered = surahs.filter(s => s.name.includes(query));
+    
+    const list = document.getElementById("surah-list");
+    list.innerHTML = ""; // مسح القائمة قبل إعادة تحميل العناصر
+
+    filtered.forEach(surah => {
+        const li = document.createElement("li");
+        li.textContent = surah.name;
+        li.onclick = () => window.open(`https://quran.com/${surah.number}`, "_blank");
+        list.appendChild(li);
+    });
 }
 
-    </script>
-</body>
-</html>
+    loadSurahs();  
+</script>
+
+</body>  
+</html> 
